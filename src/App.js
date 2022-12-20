@@ -1,20 +1,18 @@
 import React from 'react';
 import TaskList from './components/TaskList.js';
 import './App.css';
-
 const TASKS = [
   {
     id: 1,
-    title: 'Mow the lawn',
+    title: 'Put up Christmas Tree',
     isComplete: false,
   },
   {
     id: 2,
-    title: 'Cook Pasta',
+    title: 'Christmas Shopping',
     isComplete: true,
   },
 ];
-
 const App = () => {
   return (
     <div className="App">
@@ -27,5 +25,4 @@ const App = () => {
     </div>
   );
 };
-
 export default App;
