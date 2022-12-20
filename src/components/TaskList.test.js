@@ -20,7 +20,7 @@ describe('TaskList Renders', () => {
     // Act
     render(
       <TaskList
-        tasks={tasks}
+        taskData={tasks}
         onTaskClickCallback={() => {}}
         onTaskDeleteCallback={() => {}}
       />

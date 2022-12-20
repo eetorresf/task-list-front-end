@@ -46,6 +46,7 @@ const unregisterTaskApi = (id) => {
 
 function App () {
   const [taskData, setTaskData] = useState([]);
+  const 
 
   const getAllTasks = () => {
     return getAllTasksApi()
@@ -72,7 +73,7 @@ function App () {
       <header className="App-header">
         <h1>Ada&apos;s Task List</h1>
       </header>
-      <TaskList taskData={taskData} onUnregister={unregisterTask}/>  
+      <TaskList taskData={taskData} onUnregister={unregisterTask} onSetComplete={setComplete} />  
     </div>
   );
 }

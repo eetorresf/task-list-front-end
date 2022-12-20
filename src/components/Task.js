@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import './Task.css';
 
 const Task = (props) => {
-  const [complete, setComplete] = useState(props.isComplete);
+  // const [complete, setComplete] = useState(props.isComplete);
   const buttonClass = complete ? '--completed' : '';
-  // const [deleted, setDeleted] = useState(isDeleted);
-  // const deleteClass = complete ? 'tasks_item_remove--deleted' : '';
+ 
   return (
     <div>
       <li className="tasks__item">
