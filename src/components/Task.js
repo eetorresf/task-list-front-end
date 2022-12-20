@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Task.css';
 
-const Task = ({ id, title, isComplete, isDeleted }) => {
-  const [complete, setComplete] = useState(isComplete);
-  const buttonClass = complete ? 'tasks_item_toggle--completed' : '';
+const Task = (props) => {
+  const [complete, setComplete] = useState(props.isComplete);
+  const buttonClass = complete ? '--completed' : '';
   // const [deleted, setDeleted] = useState(isDeleted);
+  // const deleteClass = complete ? 'tasks_item_remove--deleted' : '';
   return (
     <div>
       <li className="tasks__item">
         <button
-          className={`tasks__item__toggle ${buttonClass}`}
+          className={`tasks__item__toggle${buttonClass}`}
           onClick={() => setComplete(!complete)}
         >
-          {title}
+          {props.title}
         </button>
-        <button className="tasks_item_remove button">x</button>
+        <button className="tasks_item_remove button" onClick={() => props.isDeleted(props.id)}>x</button>
       </li>
     </div>
   );
