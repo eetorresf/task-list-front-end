@@ -10,7 +10,7 @@ const Task = ({ id, title, isComplete, isDeleted }) => {
     <div>
       <li className="tasks__item">
         <button
-          className={tasks__item__toggle ${buttonClass}}
+          className={`tasks__item__toggle ${buttonClass}`}
           onClick={() => setComplete(!complete)}
         >
           {title}
