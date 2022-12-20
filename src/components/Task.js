@@ -4,14 +4,14 @@ import './Task.css';
 
 const Task = (props) => {
   // const [complete, setComplete] = useState(props.isComplete);
-  const buttonClass = complete ? '--completed' : '';
+  const buttonClass = props.isComplete ? '--completed' : '';
  
   return (
     <div>
       <li className="tasks__item">
         <button
           className={`tasks__item__toggle${buttonClass}`}
-          onClick={() => setComplete(!complete)}
+          onClick={() => props.setComplete(props.id)}
         >
           {props.title}
         </button>

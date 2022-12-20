@@ -27,6 +27,16 @@ const convertFromApi = (apiTask) => {
   return newTask;
 };
 
+const setCompleteApi = (id) => {
+  return axios.patch(`${kBaseUrl}/tasks/${id}/mark_complete`)
+  .then(response => {
+    return convertFromApi(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+};
+
 const getAllTasksApi = () => {
   return axios.get(`${kBaseUrl}/tasks`)
   .then(response => {
@@ -46,7 +56,20 @@ const unregisterTaskApi = (id) => {
 
 function App () {
   const [taskData, setTaskData] = useState([]);
-  const 
+  const [isComplete, setIsComplete] = useState(false);
+
+  const setComplete = (id) => {
+    return setCompleteApi(id)
+    .then(taskResult => {
+      setIsComplete(complete => complete.map(task => {
+        if(task.id === taskResult.id) {
+          return taskResult;
+        } else {
+          return task;
+        }
+      }));
+    })
+  };
 
   const getAllTasks = () => {
     return getAllTasksApi()
