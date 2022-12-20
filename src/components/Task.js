@@ -16,7 +16,8 @@ const Task = (props) => {
         >
           {props.title}
         </button>
-        <button className="tasks_item_remove button" onClick={() => props.isDeleted(props.id)}>x</button>
+        <button className="tasks_item_remove button" >x</button>
+        {/* onClick=(onUnregister) */}
       </li>
     </div>
   );
@@ -26,6 +27,7 @@ Task.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   isComplete: PropTypes.bool.isRequired,
-  isDeleted: PropTypes.bool.isRequired,
+  // setComplete: PropTypes.func.isRequired,
+  // onUnregister: PropTypes.func.isRequired,
 };
 export default Task;

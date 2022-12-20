@@ -4,30 +4,35 @@ import Task from './Task';
 import './TaskList.css';
 
 
-const TaskList = ({ tasks }) => {
-  const getTaskListJSX = (tasks) => {
-    return tasks.map((task) => {
-      return (
-        <Task
+const TaskList = (props) => {
+  // console.log(props.taskData);
+    return (
+    <>
+      <ul>
+      {props.taskData.map((task) => (
+        <Task 
           key={task.id}
           id={task.id}
           title={task.title}
           isComplete={task.isComplete}
-          isDeleted={task.isDeleted}
+          // setComplete={props.setComplete}
+          // onUnregister={props.onUnregister}
         />
-      );
-    });
-  };
-  return <ul className="tasks__list no-bullet">{getTaskListJSX(tasks)}</ul>;
+      ))}
+      </ul>
+    </>
+  );
+  // return <ul className="tasks__list no-bullet">{getTaskListJSX(tasks)}</ul>;
 };
 TaskList.propTypes = {
-  tasks: PropTypes.arrayOf(
+  taskData: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
       isComplete: PropTypes.bool.isRequired,
-      isDeleted: PropTypes.bool.isRequired,
-    })
-  ).isRequired,
+      // isDeleted: PropTypes.bool.isRequired,
+    })),
+    // setComplete: PropTypes.func.isRequired,
+    // onUnregister: PropTypes.func.isRequired,
 };
 export default TaskList;
