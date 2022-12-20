@@ -37,12 +37,12 @@ const getAllTasksApi = () => {
   });
 };
 
-// const unregisterTaskApi = (id) => {
-//   return axios.delete(`${kBaseUrl}/tasks/${id}`)
-//   .catch(error => {
-//     console.log(error);
-//   });
-// };
+const unregisterTaskApi = (id) => {
+  return axios.delete(`${kBaseUrl}/tasks/${id}`)
+  .catch(error => {
+    console.log(error);
+  });
+};
 
 function App () {
   const [taskData, setTaskData] = useState([]);
@@ -59,21 +59,20 @@ function App () {
     getAllTasks();
   }, []);
 
-  // const unregisterTask = id => {
-  //   return unregisterTaskApi(id)
-  //   .then(taskResult => {
-  //     return getAllTasks();
-  //   });
-  // };
+  const unregisterTask = id => {
+    return unregisterTaskApi(id)
+    .then(taskResult => {
+      return getAllTasks();
+    });
+  };
 
-  // onUnregister={unregisterTask}
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Ada&apos;s Task List</h1>
       </header>
-      <TaskList taskData={taskData} />  
+      <TaskList taskData={taskData} onUnregister={unregisterTask}/>  
     </div>
   );
 }
