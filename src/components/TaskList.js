@@ -17,6 +17,7 @@ const TaskList = (props) => {
           isComplete={task.isComplete}
           setComplete={props.setComplete}
           onUnregister={props.onUnregister}
+          setIncomplete={props.setIncomplete}
         />
       ))}
       </ul>
@@ -34,5 +35,6 @@ TaskList.propTypes = {
     })),
     setComplete: PropTypes.func.isRequired,
     onUnregister: PropTypes.func.isRequired,
+    setIncomplete: PropTypes.func.isRequired,
 };
 export default TaskList;

@@ -28,5 +28,6 @@ Task.propTypes = {
   isComplete: PropTypes.bool.isRequired,
   setComplete: PropTypes.func.isRequired,
   onUnregister: PropTypes.func.isRequired,
+  setIncomplete: PropTypes.func.isRequired,
 };
 export default Task;

@@ -4,19 +4,6 @@ import TaskList from './components/TaskList.js';
 import './App.css';
 import axios from 'axios'; 
 
-// const TASKS = [
-//   {
-//     id: 1,
-//     title: 'Put up Christmas Tree',
-//     isComplete: false,
-//   },
-//   {
-//     id: 2,
-//     title: 'Christmas Shopping',
-//     isComplete: true,
-//   },
-// ];
-
 const kBaseUrl = 'https://task-list-api-c17.herokuapp.com';
 
 const convertFromApi = (apiTask) => {
@@ -29,6 +16,16 @@ const convertFromApi = (apiTask) => {
 
 const setCompleteApi = (id) => {
   return axios.patch(`${kBaseUrl}/tasks/${id}/mark_complete`)
+  .then(response => {
+    return convertFromApi(response.data);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+};
+
+const setIncompleteApi = (id) => {
+  return axios.patch(`${kBaseUrl}/tasks/${id}/mark_incomplete`)
   .then(response => {
     return convertFromApi(response.data);
   })
@@ -56,19 +53,46 @@ const unregisterTaskApi = (id) => {
 
 function App () {
   const [taskData, setTaskData] = useState([]);
-  const [isComplete, setIsComplete] = useState(false);
+  const [isComplete, setIsComplete] = useState(!'');
+  const [isIncomplete, setIsIncomplete] = useState(!'');
 
-  const setComplete = (id) => {
-    return setCompleteApi(id)
+  // const setComplete = id => {
+  //   if (task.isComplete === false) {
+  //     return setCompleteApi(id) 
+  //     .then(taskResult => {
+  //       setTaskData(task);
+  //     })
+  //   else (task.isComplete === true) {
+  //     return setIncompleteApi(id)
+  //     .then(taskResult => {
+  //       setTaskData(task);
+  //     });
+  //   };
+
+  //   return setCompleteApi(id)
+  //   .then(taskResult => {
+  //     setTaskData(taskData => taskData.map(task => {
+  //       if (task.isComplete === false) {
+  //         return taskResult;
+  //       } else {
+  //         return setIncompleteApi(id);
+  //       }
+  //     }));
+  //   });
+  // };
+
+  const setComplete = id => {
+    return setCompleteApi(id) 
     .then(taskResult => {
-      setIsComplete(complete => complete.map(task => {
-        if(task.id === taskResult.id) {
-          return taskResult;
-        } else {
-          return task;
-        }
-      }));
-    })
+      return getAllTasks();
+    });
+  };
+
+  const setIncomplete = id => {
+    return setIncompleteApi(id) 
+    .then(taskResult => {
+      return getAllTasks();
+    });
   };
 
   const getAllTasks = () => {
@@ -96,7 +120,12 @@ function App () {
       <header className="App-header">
         <h1>Ada&apos;s Task List</h1>
       </header>
-      <TaskList taskData={taskData} onUnregister={unregisterTask} onSetComplete={setComplete} />  
+      <TaskList 
+        taskData={taskData} 
+        onUnregister={unregisterTask} 
+        setComplete={setComplete} 
+        setIncomplete={setIncomplete} 
+      />  
     </div>
   );
 }
